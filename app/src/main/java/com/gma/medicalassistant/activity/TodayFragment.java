@@ -5,10 +5,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.gma.medicalassistant.R;
 
@@ -30,9 +32,15 @@ public class TodayFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private String TAG = "TodayFragment";
+
     private OnFragmentInteractionListener mListener;
 
-    private TextView tv;
+    private ImageButton callBtn;
+    private Button measureBtn;
+    private Button planBtn;
+    private Button resultBtn;
+    private Button heartRateBtn;
 
     public TodayFragment() {
         // Required empty public constructor
@@ -69,38 +77,44 @@ public class TodayFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_today, container, false);
+        View view = inflater.inflate(R.layout.fragment_today, container, false);
+        callBtn = view.findViewById(R.id.img_btn_call);
+        measureBtn = view.findViewById(R.id.btn_mesure);
+        planBtn = view.findViewById(R.id.btn_today_plan);
+        resultBtn = view.findViewById(R.id.btn_today_result);
+        heartRateBtn = view.findViewById(R.id.btn_today_heart_rate);
+
+        return view;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        tv = (TextView) view.findViewById(R.id.today_fg_textview);
 
         Bundle bundle = getArguments();
         if (bundle != null) {
             String name = bundle.get(ARG_PARAM1).toString();
-            tv.setText(name);
         }
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
+    public void onCallBtnClick(Uri uri) {
+        Log.d(TAG, "pressed");
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.onTodayFragmentInteraction("test");
         }
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        /*
+
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
-        }*/
+        }
     }
 
     @Override
@@ -119,8 +133,50 @@ public class TodayFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        callBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onTodayFragmentInteraction("click Call Doctor button");
+            }
+        });
+
+        measureBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onTodayFragmentInteraction("click Measure button");
+            }
+        });
+
+        planBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onTodayFragmentInteraction("click Plan button");
+            }
+        });
+
+        resultBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onTodayFragmentInteraction("click Result button");
+            }
+        });
+
+        heartRateBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onTodayFragmentInteraction("click heart rate button");
+            }
+        });
+    }
+
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onTodayFragmentInteraction(String s);
     }
+
+
 }

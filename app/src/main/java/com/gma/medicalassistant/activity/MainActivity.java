@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gma.medicalassistant.R;
 import com.gma.medicalassistant.adapter.ViewPagerAdapter;
@@ -18,7 +19,11 @@ import com.gma.medicalassistant.adapter.ViewPagerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements
+        SignupFragment.OnFragmentInteractionListener,
+        CareActFragment.OnFragmentInteractionListener,
+        MineFragment.OnFragmentInteractionListener,
+        TodayFragment.OnFragmentInteractionListener {
 
     private TextView mTextMessage;
     private int LOGIN_REQUEST_CODE = 10001;
@@ -72,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,5 +124,17 @@ public class MainActivity extends AppCompatActivity {
                 Log.i(TAG, result);
             }
         }
+    }
+
+    @Override
+    public void onFragmentInteraction(String s){
+        Log.d(TAG, s);
+        Toast.makeText(this,s, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onTodayFragmentInteraction(String s) {
+        Log.d(TAG, "Today Frag " + s);
+        Toast.makeText(this,s, Toast.LENGTH_SHORT).show();
     }
 }

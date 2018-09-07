@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:shape="oval">
+            //边框角度
+            <corners android:radius="2dip" />
+            //外边框颜色
+            <solid android:color="@color/bg_gray" />
+            <size
+                android:width="168dp"
+                android:height="168dp"></size>
+            <padding
+                android:bottom="2dp"
+                android:left="2dp"
+                android:right="2dp"
+                android:top="2dp"></padding>
+        </shape>
+    </item>
+    //离边框的厚度
+    <item android:bottom="1dp" android:left="1dp" android:right="1dp" android:top="1dp">
+        <shape android:shape="oval">
+            //边框角度
+            <corners android:radius="2dip"/>
+            //外边框颜色，这个为内部颜色
+            <solid android:color="@color/bg_lightblue" />
+            <size
+                android:width="15dp"
+                android:height="15dp"></size>
+            <padding
+                android:bottom="1dp"
+                android:left="1dp"
+                android:right="1dp"
+                android:top="1dp"></padding>
+        </shape>
+    </item>
+</layer-list>
