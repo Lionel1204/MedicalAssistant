@@ -17,7 +17,7 @@ import com.gma.medicalassistant.R;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link TodayFragment.OnFragmentInteractionListener} interface
+ * {@link TodayFragment.OnTodayFragmentInteractionListener} interface
  * to handle interaction events.
  * Use the {@link TodayFragment#newInstance} factory method to
  * create an instance of this fragment.
@@ -34,7 +34,7 @@ public class TodayFragment extends Fragment {
 
     private String TAG = "TodayFragment";
 
-    private OnFragmentInteractionListener mListener;
+    private OnTodayFragmentInteractionListener mListener;
 
     private ImageButton callBtn;
     private Button measureBtn;
@@ -109,8 +109,8 @@ public class TodayFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
 
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof OnTodayFragmentInteractionListener) {
+            mListener = (OnTodayFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -173,10 +173,8 @@ public class TodayFragment extends Fragment {
         });
     }
 
-    public interface OnFragmentInteractionListener {
+    public interface OnTodayFragmentInteractionListener {
         // TODO: Update argument type and name
         void onTodayFragmentInteraction(String s);
     }
-
-
 }

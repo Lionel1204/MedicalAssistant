@@ -1,18 +1,12 @@
 package com.gma.medicalassistant.activity;
 
 import android.content.Context;
-import android.graphics.SurfaceTexture;
-import android.hardware.camera2.CameraManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.HandlerThread;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +19,7 @@ import com.gma.medicalassistant.helper.Camera2Helper;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link SignupFragment.OnFragmentInteractionListener} interface
+ * {@link SignupFragment.OnSignupFragmentInteractionListener} interface
  * to handle interaction events.
  * Use the {@link SignupFragment#newInstance} factory method to
  * create an instance of this fragment.
@@ -40,7 +34,7 @@ public class SignupFragment extends Fragment implements Camera2Helper.AfterDoLis
     private String mParam1;
     private String mParam2;
 
-    private OnFragmentInteractionListener mListener;
+    private OnSignupFragmentInteractionListener mListener;
 
     private String TAG = "SignupFragment";
 
@@ -85,9 +79,7 @@ public class SignupFragment extends Fragment implements Camera2Helper.AfterDoLis
         View view = inflater.inflate(R.layout.fragment_signup, container, false);
 
         mTextureView = view.findViewById(R.id.view_preview);
-        mCamera2Helper = Camera2Helper.getInstance(this.getActivity(), mTextureView, null);
-        mCamera2Helper.setAfterDoListener(this);
-        mCamera2Helper.startCameraPreView();
+
         return view;
     }
 
@@ -112,8 +104,8 @@ public class SignupFragment extends Fragment implements Camera2Helper.AfterDoLis
     public void onAttach(Context context) {
         super.onAttach(context);
 
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof OnSignupFragmentInteractionListener) {
+            mListener = (OnSignupFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -141,16 +133,33 @@ public class SignupFragment extends Fragment implements Camera2Helper.AfterDoLis
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         // TODO: add the button click event
-
+        mTextureView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onSignupFragmentInteraction("");
+            }
+        });
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        mCamera2Helper.onDestroyHelper();
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if(isVisibleToUser) {
+            Log.i(TAG, "visible");
+            mCamera2Helper = Camera2Helper.getInstance(this.getActivity(), mTextureView, null);
+            mCamera2Helper.setAfterDoListener(this);
+            mCamera2Helper.startCameraPreView();
+        } else {
+            Log.i(TAG, "invisible");
+            if (mCamera2Helper != null) {
+                mCamera2Helper.onDestroyHelper();
+                Camera2Helper.destoryInstance();
+                mCamera2Helper = null;
+            }
+        }
     }
 
-    public interface OnFragmentInteractionListener {
+    public interface OnSignupFragmentInteractionListener {
         // TODO: Update argument type and name
         void onSignupFragmentInteraction(String s);
     }
@@ -174,6 +183,4 @@ public class SignupFragment extends Fragment implements Camera2Helper.AfterDoLis
             }
         });
     }
-
-
 }

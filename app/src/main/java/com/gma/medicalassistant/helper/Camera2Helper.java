@@ -251,11 +251,15 @@ public class Camera2Helper {
         return singleton;
     }
 
+    public static void destoryInstance() {
+        singleton = null;
+    }
+
     /**
      * 开启相机预览界面
      */
     public void startCameraPreView() {
-        startBackgroundThread();
+        //startBackgroundThread();
         //1、如果TextureView 可用则直接打开相机
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -670,11 +674,11 @@ public class Camera2Helper {
      * 释放Act和View
      */
     public void onDestroyHelper() {
-        stopBackgroundThread();
         closeCamera();
         activity = null;
         textureView = null;
-        listener=null;
+        listener = null;
+        //stopBackgroundThread();
     }
 
     private static class CompareSizesByArea implements Comparator<Size> {
