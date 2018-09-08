@@ -597,7 +597,6 @@ public class Camera2Helper {
             if (!mCameraOpenCloseLock.tryAcquire(2500, TimeUnit.MILLISECONDS)) {
                 throw new RuntimeException("Time out waiting to lock camera opening.");
             }
-            int  c = ActivityCompat.checkSelfPermission(activity, Manifest.permission.CAMERA);
             if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                 return;
             }
