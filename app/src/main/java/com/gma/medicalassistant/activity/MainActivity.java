@@ -10,11 +10,13 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gma.medicalassistant.R;
 import com.gma.medicalassistant.adapter.ViewPagerAdapter;
+import com.gma.medicalassistant.utils.MedConst;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +28,6 @@ public class MainActivity extends AppCompatActivity implements
         TodayFragment.OnFragmentInteractionListener {
 
     private TextView mTextMessage;
-    private int LOGIN_REQUEST_CODE = 10001;
     private boolean mLogged = false;
     private String TAG = "MainActivity";
     private ViewPager viewPager;
@@ -105,13 +106,11 @@ public class MainActivity extends AppCompatActivity implements
         super.onStart();
         mLogged = true;
         if (!mLogged) {
-            Intent loginIntent = new Intent("ACTION_LOGIN");
+            Intent loginIntent = new Intent(MedConst.INTENT_ACTION_LOGIN);
             loginIntent.putExtra("key", "test");
-            int requestCode = LOGIN_REQUEST_CODE;
+            int requestCode = MedConst.LOGIN_REQUEST_CODE;
             startActivityForResult(loginIntent, requestCode);
         }
-
-
     }
 
     @Override
@@ -127,14 +126,31 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onFragmentInteraction(String s){
+    public void onSignupFragmentInteraction(String s){
         Log.d(TAG, s);
         Toast.makeText(this,s, Toast.LENGTH_SHORT).show();
     }
 
     @Override
+    public void onMineFragmentInteraction(String s){
+        Log.d(TAG, s);
+        Toast.makeText(this,s, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onCareActFragmentInteraction(String s){
+        Log.d(TAG, s);
+        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
     public void onTodayFragmentInteraction(String s) {
         Log.d(TAG, "Today Frag " + s);
-        Toast.makeText(this,s, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+    }
+
+    public void onCameraPreviewClick(View view) {
+        String info = getResources().getString(R.string.signup_success);
+        Toast.makeText(this, info, Toast.LENGTH_LONG).show();
     }
 }

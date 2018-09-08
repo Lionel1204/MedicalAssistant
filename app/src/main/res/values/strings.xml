@@ -29,4 +29,7 @@
     <string name="today_plan">心脏计划</string>
     <string name="today_result">检查结果</string>
     <string name="today_heart_rate">心率/心电</string>
+
+    <!-- Signup Page -->
+    <string name="signup_success">签到成功</string>
 </resources>

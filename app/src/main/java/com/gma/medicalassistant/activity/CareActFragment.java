@@ -87,7 +87,7 @@ public class CareActFragment extends Fragment {
         // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onFragmentInteraction("s");
+            mListener.onCareActFragmentInteraction("s");
         }
     }
 
@@ -118,8 +118,16 @@ public class CareActFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        // TODO: add the button click event
+
+    }
+
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(String s);
+        void onCareActFragmentInteraction(String s);
     }
 }

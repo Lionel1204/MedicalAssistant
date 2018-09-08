@@ -1,16 +1,26 @@
 package com.gma.medicalassistant.activity;
 
 import android.content.Context;
+import android.graphics.SurfaceTexture;
+import android.hardware.camera2.CameraManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.HandlerThread;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
+import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.gma.medicalassistant.R;
+import com.gma.medicalassistant.helper.Camera2Helper;
+
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,7 +30,7 @@ import com.gma.medicalassistant.R;
  * Use the {@link SignupFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SignupFragment extends Fragment {
+public class SignupFragment extends Fragment implements Camera2Helper.AfterDoListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -32,7 +42,10 @@ public class SignupFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    private TextView tv;
+    private String TAG = "SignupFragment";
+
+    private Camera2Helper mCamera2Helper;
+    private TextureView mTextureView;
 
     public SignupFragment() {
         // Required empty public constructor
@@ -69,25 +82,29 @@ public class SignupFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_signup, container, false);
+        View view = inflater.inflate(R.layout.fragment_signup, container, false);
+
+        mTextureView = view.findViewById(R.id.view_preview);
+        mCamera2Helper = Camera2Helper.getInstance(this.getActivity(), mTextureView, null);
+        mCamera2Helper.setAfterDoListener(this);
+        mCamera2Helper.startCameraPreView();
+        return view;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        tv = (TextView) view.findViewById(R.id.signup_fg_textview);
 
         Bundle bundle = getArguments();
         if (bundle != null) {
             String name = bundle.get(ARG_PARAM1).toString();
-            tv.setText(name);
         }
     }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onFragmentInteraction("test");
+            mListener.onSignupFragmentInteraction("test");
         }
     }
 
@@ -101,6 +118,7 @@ public class SignupFragment extends Fragment {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }
+
     }
 
     @Override
@@ -119,8 +137,43 @@ public class SignupFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        // TODO: add the button click event
+
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mCamera2Helper.onDestroyHelper();
+    }
+
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(String s);
+        void onSignupFragmentInteraction(String s);
     }
+
+    @Override
+    public void onAfterPreviewBack() {
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Log.i(TAG, "onAfterPreviewBack");
+            }
+        });
+    }
+
+    @Override
+    public void onAfterTakePicture() {
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Log.i(TAG, "onAfterTakePicture");
+            }
+        });
+    }
+
+
 }
