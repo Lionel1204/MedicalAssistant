@@ -1,10 +1,15 @@
 package com.gma.medicalassistant.activity;
 
+import android.Manifest;
+import android.annotation.TargetApi;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -23,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+
 public class MainActivity extends AppCompatActivity implements
         TodayFragment.OnTodayFragmentInteractionListener,
         SignupFragment.OnSignupFragmentInteractionListener,
@@ -37,6 +43,8 @@ public class MainActivity extends AppCompatActivity implements
     private BottomNavigationView navigation;
     private List<Fragment> list;
     private long startTime = 0;
+    private final int REQUEST_ACCESS_CAMERA = 10;
+    private boolean mCanPreview = false;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -48,6 +56,12 @@ public class MainActivity extends AppCompatActivity implements
                     viewPager.setCurrentItem(0, false);
                     return true;
                 case R.id.navigation_signup:
+                    if (!mCanPreview) {
+                        String info = getResources().getString(R.string.permission_camera);
+                        Toast.makeText(MainActivity.this, info, Toast.LENGTH_SHORT).show();
+                        return true;
+                    }
+
                     if (allowOpen())
                         viewPager.setCurrentItem(1, false);
                     else {
@@ -138,6 +152,7 @@ public class MainActivity extends AppCompatActivity implements
             startActivityForResult(loginIntent, requestCode);
         }
         startTime = (new Date()).getTime();
+        mayRequestCameraPermissions();
     }
 
     @Override
@@ -198,5 +213,25 @@ public class MainActivity extends AppCompatActivity implements
 
         startActivityForResult(intent, code);
         //Toast.makeText(this, it, Toast.LENGTH_SHORT).show();
+    }
+
+    private void mayRequestCameraPermissions(){
+        if (checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+            mCanPreview = true;
+            return;
+        }
+        requestPermissions(new String[]{Manifest.permission.CAMERA}, REQUEST_ACCESS_CAMERA);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        if (requestCode == REQUEST_ACCESS_CAMERA) {
+            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                mCanPreview = true;
+            } else {
+                mCanPreview = false;
+            }
+        }
     }
 }
