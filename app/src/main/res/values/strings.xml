@@ -62,6 +62,18 @@
 
     <!-- Plan page -->
     <string name="plan_title">心脏计划</string>
+    <string name="plan_details_title">你的计划</string>
+    <string name="plan_details_content">心脏养护关爱1号套餐</string>
+    <string name="plan_finished">已完成：60%</string>
+    <string name="plan_remained">套餐剩余：15天</string>
+    <string name="plan_other_title">其他计划</string>
+    <string name="plan_type_1">心脏养护关爱%d号套餐</string>
+    <string name="plan_type_2">心脏加油%d号套餐</string>
+    <string name="plan_purchase">订购</string>
+    <string name="plan_purchase_again">续订</string>
+    <string name="plan_pay">确认支付</string>
+    <string name="plan_cancel_pay">取消</string>
+
 
     <!-- Check result page -->
     <string name="check_result_title">检查结果</string>
