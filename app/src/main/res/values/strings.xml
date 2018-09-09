@@ -42,4 +42,10 @@
                                     主讲：广州中医药大学 \n
     </string>
     <string name="careact_signup_success">您已成功抢座</string>
+
+    <!-- Mine Page -->
+    <string name="mine_modify_info">更新信息</string>
+    <string name="mine_add_wechat">绑定微信</string>
+    <string name="mine_phone_info">电话已绑定：</string>
+    <string name="mine_email_info">邮箱已绑定：</string>
 </resources>

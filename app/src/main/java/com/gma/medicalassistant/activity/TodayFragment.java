@@ -36,11 +36,11 @@ public class TodayFragment extends Fragment {
 
     private OnTodayFragmentInteractionListener mListener;
 
-    private ImageButton callBtn;
-    private Button measureBtn;
-    private Button planBtn;
-    private Button resultBtn;
-    private Button heartRateBtn;
+    private ImageButton mCallBtn;
+    private Button mMeasureBtn;
+    private Button mPlanBtn;
+    private Button mResultBtn;
+    private Button mHeartRateBtn;
 
     public TodayFragment() {
         // Required empty public constructor
@@ -78,11 +78,11 @@ public class TodayFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_today, container, false);
-        callBtn = view.findViewById(R.id.img_btn_call);
-        measureBtn = view.findViewById(R.id.btn_mesure);
-        planBtn = view.findViewById(R.id.btn_today_plan);
-        resultBtn = view.findViewById(R.id.btn_today_result);
-        heartRateBtn = view.findViewById(R.id.btn_today_heart_rate);
+        mCallBtn = view.findViewById(R.id.img_btn_call);
+        mMeasureBtn = view.findViewById(R.id.btn_mesure);
+        mPlanBtn = view.findViewById(R.id.btn_today_plan);
+        mResultBtn = view.findViewById(R.id.btn_today_result);
+        mHeartRateBtn = view.findViewById(R.id.btn_today_heart_rate);
 
         return view;
     }
@@ -137,35 +137,35 @@ public class TodayFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        callBtn.setOnClickListener(new View.OnClickListener() {
+        mCallBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mListener.onTodayFragmentInteraction("click Call Doctor button");
             }
         });
 
-        measureBtn.setOnClickListener(new View.OnClickListener() {
+        mMeasureBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mListener.onTodayFragmentInteraction("click Measure button");
             }
         });
 
-        planBtn.setOnClickListener(new View.OnClickListener() {
+        mPlanBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mListener.onTodayFragmentInteraction("click Plan button");
             }
         });
 
-        resultBtn.setOnClickListener(new View.OnClickListener() {
+        mResultBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mListener.onTodayFragmentInteraction("click Result button");
             }
         });
 
-        heartRateBtn.setOnClickListener(new View.OnClickListener() {
+        mHeartRateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mListener.onTodayFragmentInteraction("click heart rate button");

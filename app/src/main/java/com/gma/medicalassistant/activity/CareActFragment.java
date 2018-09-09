@@ -8,7 +8,6 @@ import android.support.v4.app.Fragment;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.TextAppearanceSpan;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +37,7 @@ public class CareActFragment extends Fragment {
     private OnCareActFragmentInteractionListener mListener;
 
     private TextView mTextView;
-    private Button signupBtn;
+    private Button mSignupBtn;
     private String TAG = "CareActFragment";
 
     public CareActFragment() {
@@ -77,26 +76,25 @@ public class CareActFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_care_act, container, false);
-        signupBtn = view.findViewById(R.id.btn_care_sign);
+        mSignupBtn = view.findViewById(R.id.btn_care_sign);
+        mTextView = view.findViewById(R.id.care_fg_textview);
         return view;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mTextView = view.findViewById(R.id.care_fg_textview);
 
         Bundle bundle = getArguments();
         if (bundle != null) {
-            String name = bundle.get(ARG_PARAM1).toString();
+            //String name = bundle.get(ARG_PARAM1).toString();
 
-            String showInfo = view.getResources().getString(R.string.careact_showinfo);
-            SpannableString styledText = new SpannableString(showInfo);
-            styledText.setSpan(new TextAppearanceSpan(this.getContext(), R.style.ShowInfoStyle), 0, showInfo.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-            mTextView.setText(styledText, TextView.BufferType.SPANNABLE);
-            //tv.setText(name);
         }
+        String showInfo = view.getResources().getString(R.string.careact_showinfo);
+        SpannableString styledText = new SpannableString(showInfo);
+        styledText.setSpan(new TextAppearanceSpan(this.getContext(), R.style.ShowInfoStyle), 0, showInfo.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        mTextView.setText(styledText, TextView.BufferType.SPANNABLE);
     }
 
         // TODO: Rename method, update argument and hook method into UI event
@@ -139,7 +137,7 @@ public class CareActFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         final String toastInfo = this.getResources().getString(R.string.careact_signup_success);
         // TODO: add the button click event
-        signupBtn.setOnClickListener(new View.OnClickListener() {
+        mSignupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mListener.onCareActFragmentInteraction(toastInfo);

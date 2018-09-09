@@ -31,6 +31,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.gma.medicalassistant.R;
+import com.gma.medicalassistant.utils.MedConst;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,8 +53,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * TODO: remove after connecting to a real authentication system.
      */
     private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "P0104:18621373333",
-            "test1:13012341234"
+            MedConst.MOCK_LOGIN_INFO1,
+            MedConst.MOCK_LOGIN_INFO2
     };
     /**
      * Keep track of the login task to ensure we can cancel it if requested.

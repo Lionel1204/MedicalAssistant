@@ -5,6 +5,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.TextAppearanceSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.gma.medicalassistant.R;
+import com.gma.medicalassistant.utils.MedConst;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,7 +37,8 @@ public class MineFragment extends Fragment {
 
     private OnMineFragmentInteractionListener mListener;
 
-    private TextView tv;
+    private TextView mPhoneTextView;
+    private TextView mEmailTextView;
     private String TAG = "MineFragment";
 
     public MineFragment() {
@@ -72,19 +77,38 @@ public class MineFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_mine, container, false);
+        mPhoneTextView = view.findViewById(R.id.mine_phone_view);
+        mEmailTextView = view.findViewById(R.id.mine_email_view);
         return view;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        tv = (TextView) view.findViewById(R.id.mine_fg_textview);
 
         Bundle bundle = getArguments();
         if (bundle != null) {
             String name = bundle.get(ARG_PARAM1).toString();
-            tv.setText(name);
+            //tv.setText(name);
         }
+
+        String[] pieces = MedConst.MOCK_LOGIN_INFO1.split(":");
+        String phone = pieces[1];
+        String mockEmail = "138xxxxxx@qq.com";
+
+        String showPhoneInfo = view.getResources().getString(R.string.mine_phone_info) + phone;
+        SpannableString styledPhoneInfo = new SpannableString(showPhoneInfo);
+        styledPhoneInfo.setSpan(new TextAppearanceSpan(this.getContext(), R.style.ShowInfoStyle), 0, showPhoneInfo.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        mPhoneTextView.setText(styledPhoneInfo, TextView.BufferType.SPANNABLE);
+
+        String showEmailInfo = view.getResources().getString(R.string.mine_email_info) + mockEmail;
+        SpannableString styledEmailInfo = new SpannableString(showEmailInfo);
+        styledEmailInfo.setSpan(new TextAppearanceSpan(this.getContext(), R.style.ShowInfoStyle), 0, showEmailInfo.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        mEmailTextView.setText(styledEmailInfo, TextView.BufferType.SPANNABLE);
+
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -127,6 +151,7 @@ public class MineFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         // TODO: add the button click event
+
 
     }
 
