@@ -132,15 +132,19 @@ public class SignupFragment extends Fragment implements Camera2Helper.AfterDoLis
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        final String toastInfo = getResources().getString(R.string.signup_success);
         // TODO: add the button click event
         mTextureView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mListener.onSignupFragmentInteraction("");
+                mListener.onSignupFragmentInteraction(toastInfo);
             }
         });
     }
 
+    // If we use FragmentPagerAdapter+ViewPager and we wanna switch to the last
+    // Fragment which is created, all of lifecycle function, including onHiddenChanged()
+    // are not called at all. We need to use setUserVisibleHint instead.
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);

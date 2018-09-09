@@ -8,4 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="ShowInfoStyle">
+        <item name="android:textSize">24dip</item>
+        <item name="android:textColor">@color/txt_gray</item>
+    </style>
+
 </resources>

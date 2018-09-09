@@ -6,10 +6,25 @@
     tools:context=".activity.CareActFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/care_fg_textview"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_marginBottom="60dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/care_fg_textview"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:maxLines="999"
+            android:text="@string/careact_showinfo" />
+
+        <Button
+            android:id="@+id/btn_care_sign"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/careact_signup" />
+    </LinearLayout>
 
 </FrameLayout>

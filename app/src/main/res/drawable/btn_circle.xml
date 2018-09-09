@@ -10,8 +10,8 @@
             //外边框颜色
             <solid android:color="@color/bg_gray" />
             <size
-                android:width="168dp"
-                android:height="168dp"></size>
+                android:width="150dp"
+                android:height="150dp"></size>
             <padding
                 android:bottom="2dp"
                 android:left="2dp"

@@ -126,8 +126,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onSignupFragmentInteraction(String s){
         Log.d(TAG, s);
-        String info = getResources().getString(R.string.signup_success);
-        Toast.makeText(this, info, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, s, Toast.LENGTH_LONG).show();
     }
 
     @Override

@@ -32,4 +32,14 @@
 
     <!-- Signup Page -->
     <string name="signup_success">签到成功</string>
+
+    <!-- Care Activity Page -->
+    <string name="careact_signup">点击报名</string>
+    <string name="careact_showinfo"> \n
+                                    时间：2018.8.23 - 8.30  15:00 - 17:00 \n
+                                    地点：中心会议厅 \n
+                                    内容：中医五禽戏对心脏的康复锻炼（讲解+锻炼）\n
+                                    主讲：广州中医药大学 \n
+    </string>
+    <string name="careact_signup_success">您已成功抢座</string>
 </resources>

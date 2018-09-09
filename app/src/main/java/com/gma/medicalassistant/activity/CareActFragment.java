@@ -5,10 +5,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.TextAppearanceSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.gma.medicalassistant.R;
@@ -33,7 +37,8 @@ public class CareActFragment extends Fragment {
 
     private OnCareActFragmentInteractionListener mListener;
 
-    private TextView tv;
+    private TextView mTextView;
+    private Button signupBtn;
     private String TAG = "CareActFragment";
 
     public CareActFragment() {
@@ -72,18 +77,25 @@ public class CareActFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_care_act, container, false);
+        signupBtn = view.findViewById(R.id.btn_care_sign);
         return view;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        tv = (TextView) view.findViewById(R.id.care_fg_textview);
+        mTextView = view.findViewById(R.id.care_fg_textview);
 
         Bundle bundle = getArguments();
         if (bundle != null) {
             String name = bundle.get(ARG_PARAM1).toString();
-            tv.setText(name);
+
+            String showInfo = view.getResources().getString(R.string.careact_showinfo);
+            SpannableString styledText = new SpannableString(showInfo);
+            styledText.setSpan(new TextAppearanceSpan(this.getContext(), R.style.ShowInfoStyle), 0, showInfo.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+            mTextView.setText(styledText, TextView.BufferType.SPANNABLE);
+            //tv.setText(name);
         }
     }
 
@@ -125,7 +137,14 @@ public class CareActFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        final String toastInfo = this.getResources().getString(R.string.careact_signup_success);
         // TODO: add the button click event
+        signupBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onCareActFragmentInteraction(toastInfo);
+            }
+        });
 
     }
 
