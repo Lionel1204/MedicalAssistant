@@ -48,18 +48,30 @@
     <string name="mine_add_wechat">绑定微信</string>
     <string name="mine_phone_info">电话已绑定：</string>
     <string name="mine_email_info">邮箱已绑定：</string>
+    <string name="mine_modify_info_feedback">Demo版不支持</string>
 
     <!-- Call Doctor page -->
     <string name="call_doctor_title">呼叫医生</string>
 
     <!-- Measurement page -->
     <string name="measurement_title">一键测量</string>
+    <string name="measurement_heart_rate">心率：75</string>
+    <string name="measurement_blood_pressure">血压：120/80 mmHg</string>
+    <string name="measurement_send_to_doctor">发送给医生</string>
 
     <!-- Plan page -->
     <string name="plan_title">心脏计划</string>
 
     <!-- Check result page -->
     <string name="check_result_title">检查结果</string>
+    <string name="check_result_uploaded">我的已上传：</string>
+    <string name="check_result_eeg">心电图</string>
+    <string name="check_result_blood_lipid">血脂</string>
+    <string name="check_result_blood_rt">血常规</string>
+    <string name="check_result_my_result">我的检查:</string>
+    <string name="check_result_eeg_monitor">心电监测</string>
+    <string name="check_result_upload">上传</string>
+    <string name="check_result_upload_feedback">Demo版不支持</string>
 
     <!-- Heart rate page -->
     <string name="heart_rate_title">心率心电</string>

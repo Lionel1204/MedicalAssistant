@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.gma.medicalassistant.R;
@@ -39,6 +40,8 @@ public class MineFragment extends Fragment {
 
     private TextView mPhoneTextView;
     private TextView mEmailTextView;
+    private Button mModifyBtn;
+    private Button mBindWechatBtn;
     private String TAG = "MineFragment";
 
     public MineFragment() {
@@ -79,6 +82,8 @@ public class MineFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_mine, container, false);
         mPhoneTextView = view.findViewById(R.id.mine_phone_view);
         mEmailTextView = view.findViewById(R.id.mine_email_view);
+        mModifyBtn = view.findViewById(R.id.btn_mine_modify_info);
+        mBindWechatBtn = view.findViewById(R.id.btn_mine_add_wechat);
         return view;
     }
 
@@ -107,7 +112,6 @@ public class MineFragment extends Fragment {
         styledEmailInfo.setSpan(new TextAppearanceSpan(this.getContext(), R.style.ShowInfoStyle), 0, showEmailInfo.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         mEmailTextView.setText(styledEmailInfo, TextView.BufferType.SPANNABLE);
-
 
     }
 
@@ -151,8 +155,21 @@ public class MineFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         // TODO: add the button click event
+        final String toastInfo = this.getResources().getString(R.string.mine_modify_info_feedback);
 
+        mModifyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onMineFragmentInteraction(toastInfo);
+            }
+        });
 
+        mBindWechatBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onMineFragmentInteraction(toastInfo);
+            }
+        });
     }
 
     public interface OnMineFragmentInteractionListener {

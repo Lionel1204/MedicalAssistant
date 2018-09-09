@@ -6,4 +6,38 @@
     android:layout_height="match_parent"
     tools:context=".activity.MeasurementActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/heart_rate_imgview"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/ic_launcher_background" />
+
+        <TextView
+            android:id="@+id/mesaure_heart_rate_textview"
+            style="@style/ShowInfoStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10px"
+            android:text="@string/measurement_heart_rate" />
+
+        <TextView
+            android:id="@+id/measurement_blood_pressure_textview"
+            style="@style/ShowInfoStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10px"
+            android:text="@string/measurement_blood_pressure" />
+
+        <Button
+            android:id="@+id/btn_measurement_send_doctor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/measurement_send_to_doctor" />
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

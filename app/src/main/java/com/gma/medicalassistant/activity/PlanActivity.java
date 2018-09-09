@@ -2,6 +2,7 @@ package com.gma.medicalassistant.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 import com.gma.medicalassistant.R;
 
