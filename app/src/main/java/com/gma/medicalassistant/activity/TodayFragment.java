@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.gma.medicalassistant.R;
+import com.gma.medicalassistant.utils.MedConst;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -101,7 +102,7 @@ public class TodayFragment extends Fragment {
     public void onCallBtnClick(Uri uri) {
         Log.d(TAG, "pressed");
         if (mListener != null) {
-            mListener.onTodayFragmentInteraction("test");
+            mListener.onTodayFragmentInteraction("test", 0);
         }
     }
 
@@ -140,41 +141,51 @@ public class TodayFragment extends Fragment {
         mCallBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mListener.onTodayFragmentInteraction("click Call Doctor button");
+                mListener.onTodayFragmentInteraction(
+                        MedConst.INTENT_ACTION_CALL_DOCTOR,
+                        MedConst.CALL_DOCTOR_REQUEST_CODE);
             }
         });
 
         mMeasureBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mListener.onTodayFragmentInteraction("click Measure button");
+                mListener.onTodayFragmentInteraction(
+                        MedConst.INTENT_ACTION_MEASUREMENT,
+                        MedConst.MEASUREMENT_REQUEST_CODE);
             }
         });
 
         mPlanBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mListener.onTodayFragmentInteraction("click Plan button");
+                mListener.onTodayFragmentInteraction(
+                        MedConst.INTENT_ACTION_PLAN,
+                        MedConst.PLAN_REQUEST_CODE);
             }
         });
 
         mResultBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mListener.onTodayFragmentInteraction("click Result button");
+                mListener.onTodayFragmentInteraction(
+                        MedConst.INTENT_ACTION_CHECK_RESULT,
+                        MedConst.CHECK_REQUEST_CODE);
             }
         });
 
         mHeartRateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mListener.onTodayFragmentInteraction("click heart rate button");
+                mListener.onTodayFragmentInteraction(
+                        MedConst.INTENT_ACTION_HEART_RATE,
+                        MedConst.HEART_RATE_REQUEST_CODE);
             }
         });
     }
 
     public interface OnTodayFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onTodayFragmentInteraction(String s);
+        void onTodayFragmentInteraction(String it, int code);
     }
 }

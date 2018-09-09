@@ -114,12 +114,32 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 10001) {
-            if (resultCode == RESULT_OK) {
-                String result = data.getExtras().getString("result");
-                mLogged = result.equals("OK");
-                Log.i(TAG, result);
-            }
+        switch (requestCode) {
+            case MedConst.LOGIN_REQUEST_CODE:
+                if (resultCode == RESULT_OK) {
+                    String result = data.getExtras().getString("result");
+                    mLogged = result.equals("OK");
+                    Log.i(TAG, result);
+                }
+                break;
+            case MedConst.CALL_DOCTOR_REQUEST_CODE:
+                Log.i(TAG, MedConst.INTENT_ACTION_CALL_DOCTOR);
+                break;
+            case MedConst.CHECK_REQUEST_CODE:
+                Log.i(TAG, MedConst.INTENT_ACTION_CHECK_RESULT);
+                break;
+            case MedConst.HEART_RATE_REQUEST_CODE:
+                Log.i(TAG, MedConst.INTENT_ACTION_HEART_RATE);
+                break;
+            case MedConst.MEASUREMENT_REQUEST_CODE:
+                Log.i(TAG, MedConst.INTENT_ACTION_MEASUREMENT);
+                break;
+            case MedConst.PLAN_REQUEST_CODE:
+                Log.i(TAG, MedConst.INTENT_ACTION_PLAN);
+                break;
+            default:
+                break;
+
         }
     }
 
@@ -142,8 +162,12 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onTodayFragmentInteraction(String s) {
-        Log.d(TAG, "Today Frag " + s);
-        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+    public void onTodayFragmentInteraction(String it, int code) {
+        Log.d(TAG, "Today Frag " + it);
+        Intent intent = new Intent(it);
+        //intent.putExtra("key", "test");
+
+        startActivityForResult(intent, code);
+        //Toast.makeText(this, it, Toast.LENGTH_SHORT).show();
     }
 }
