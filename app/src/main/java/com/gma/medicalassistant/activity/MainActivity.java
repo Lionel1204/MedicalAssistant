@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +20,7 @@ import com.gma.medicalassistant.adapter.ViewPagerAdapter;
 import com.gma.medicalassistant.utils.MedConst;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements
     private ViewPagerAdapter viewPagerAdapter;
     private BottomNavigationView navigation;
     private List<Fragment> list;
+    private long startTime = 0;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -42,21 +45,37 @@ public class MainActivity extends AppCompatActivity implements
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    viewPager.setCurrentItem(0);
+                    viewPager.setCurrentItem(0, false);
                     return true;
                 case R.id.navigation_signup:
-                    viewPager.setCurrentItem(1);
+                    if (allowOpen())
+                        viewPager.setCurrentItem(1, false);
+                    else {
+                        String info = getResources().getString(R.string.main_repeat);
+                        Toast.makeText(MainActivity.this, info, Toast.LENGTH_SHORT).show();
+                    }
                     return true;
                 case R.id.navigation_activity:
-                    viewPager.setCurrentItem(2);
+                    viewPager.setCurrentItem(2, false);
                     return true;
                 case R.id.navigation_myprofile:
-                    viewPager.setCurrentItem(3);
+                    viewPager.setCurrentItem(3, false);
                     return true;
             }
             return false;
         }
     };
+
+    private boolean allowOpen() {
+        long curTime = (new Date()).getTime();//本次单击的时间
+
+        if(curTime - startTime > MedConst.MIN_INTERVAL_SWITCH_NAVIGATION){
+            startTime = curTime;
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     private ViewPager.OnPageChangeListener mOnPageChangeListener
             = new ViewPager.OnPageChangeListener() {
@@ -73,6 +92,14 @@ public class MainActivity extends AppCompatActivity implements
         @Override
         public void onPageScrollStateChanged(int state) {
 
+        }
+    };
+
+    private ViewPager.OnTouchListener mOnTouchListener
+            = new ViewPager.OnTouchListener() {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            return true;
         }
     };
 
@@ -96,19 +123,21 @@ public class MainActivity extends AppCompatActivity implements
         list.add(MineFragment.newInstance("Mine", "test4"));
         viewPagerAdapter.setList(list);
         viewPager.setAdapter(viewPagerAdapter);
+        viewPager.setOnTouchListener(mOnTouchListener);
         viewPager.setCurrentItem(0);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        //mLogged = true;
+        mLogged = true;
         if (!mLogged) {
             Intent loginIntent = new Intent(MedConst.INTENT_ACTION_LOGIN);
             loginIntent.putExtra("key", "test");
             int requestCode = MedConst.LOGIN_REQUEST_CODE;
             startActivityForResult(loginIntent, requestCode);
         }
+        startTime = (new Date()).getTime();
     }
 
     @Override

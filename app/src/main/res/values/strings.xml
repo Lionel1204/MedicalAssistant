@@ -5,6 +5,7 @@
     <string name="title_activity">关爱活动</string>
     <string name="title_myprofile">我的</string>
     <string name="title_activity_login">登录</string>
+    <string name="main_repeat">操作太快，请稍后重试</string>
 
     <!-- Strings related to login -->
     <string name="prompt_user_id">用户编号</string>

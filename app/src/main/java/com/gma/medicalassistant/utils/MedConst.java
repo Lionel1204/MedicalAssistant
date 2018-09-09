@@ -1,6 +1,8 @@
 package com.gma.medicalassistant.utils;
 
 public class MedConst {
+    // Const number
+    public static final int MIN_INTERVAL_SWITCH_NAVIGATION = 3 * 1000; //second
     // Intent
     public static final String INTENT_ACTION_LOGIN = "ACTION_LOGIN";
     public static final String INTENT_ACTION_CALL_DOCTOR = "ACTION_CALL_DOCTOR";
