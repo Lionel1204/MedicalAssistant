@@ -1,8 +1,11 @@
 package com.gma.medicalassistant.activity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -80,7 +83,7 @@ public class TodayFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_today, container, false);
         mCallBtn = view.findViewById(R.id.img_btn_call);
-        mMeasureBtn = view.findViewById(R.id.btn_mesure);
+        mMeasureBtn = view.findViewById(R.id.btn_measure);
         mPlanBtn = view.findViewById(R.id.btn_today_plan);
         mResultBtn = view.findViewById(R.id.btn_today_result);
         mHeartRateBtn = view.findViewById(R.id.btn_today_heart_rate);

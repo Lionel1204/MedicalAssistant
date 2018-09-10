@@ -2,10 +2,15 @@ package com.gma.medicalassistant.activity;
 
 import android.Manifest;
 import android.annotation.TargetApi;
+import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
@@ -14,19 +19,26 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gma.medicalassistant.R;
 import com.gma.medicalassistant.adapter.ViewPagerAdapter;
+import com.gma.medicalassistant.model.PlanItem;
 import com.gma.medicalassistant.utils.MedConst;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class MainActivity extends AppCompatActivity implements
@@ -45,6 +57,8 @@ public class MainActivity extends AppCompatActivity implements
     private long startTime = 0;
     private final int REQUEST_ACCESS_CAMERA = 10;
     private boolean mCanPreview = false;
+    private LoadCameraTask mTask;
+    private ProgressDialog mPd;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -62,8 +76,10 @@ public class MainActivity extends AppCompatActivity implements
                         return true;
                     }
 
-                    if (allowOpen())
+                    if (allowOpen()){
                         viewPager.setCurrentItem(1, false);
+                        new LoadCameraTask(mPd).execute((Void)null);
+                    }
                     else {
                         String info = getResources().getString(R.string.main_repeat);
                         Toast.makeText(MainActivity.this, info, Toast.LENGTH_SHORT).show();
@@ -139,6 +155,13 @@ public class MainActivity extends AppCompatActivity implements
         viewPager.setAdapter(viewPagerAdapter);
         viewPager.setOnTouchListener(mOnTouchListener);
         viewPager.setCurrentItem(0);
+
+        mPd = new ProgressDialog(this);
+        mPd.setTitle(R.string.opening_camera);
+        mPd.setMessage(getResources().getString(R.string.please_wait));
+        mPd.setCanceledOnTouchOutside(false);
+
+
     }
 
     @Override
@@ -234,4 +257,37 @@ public class MainActivity extends AppCompatActivity implements
             }
         }
     }
-}
+
+
+    public class LoadCameraTask extends AsyncTask<Void, Void, Boolean> {
+
+        private ProgressDialog mpd;
+
+        LoadCameraTask(ProgressDialog pd) {
+            mpd = pd;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            mpd.show();
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+
+            try {
+                Thread.sleep(MedConst.MIN_INTERVAL_SWITCH_NAVIGATION);
+            } catch (InterruptedException e) {
+                return false;
+            }
+            return true;
+        }
+
+        @Override
+        protected void onPostExecute(final Boolean success) {
+            mpd.dismiss();
+        }
+      }
+    }

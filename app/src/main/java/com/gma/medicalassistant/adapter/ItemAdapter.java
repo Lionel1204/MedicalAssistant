@@ -11,22 +11,25 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gma.medicalassistant.R;
+import com.gma.medicalassistant.model.PlanItem;
 
 import java.util.List;
 
-public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> {
+public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.PlanItemViewHolder> implements View.OnClickListener {
 
-    List<String> list;//存放数据
-    Context context;
+    private List<PlanItem> list;//存放数据
+    private Context context;
+    private PlanItemClickListener mItemClickListener;
 
-    public ItemAdapter(List<String> list, Context context) {
+    public ItemAdapter(List<PlanItem> list, Context context) {
         this.list = list;
         this.context = context;
     }
 
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        MyViewHolder holder = new MyViewHolder(LayoutInflater.from(context).inflate(R.layout.listitem_plan_other, parent, false));
+    public PlanItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.listitem_plan_other, parent, false);
+        PlanItemViewHolder holder = new PlanItemViewHolder(view);
         return holder;
     }
 
@@ -35,9 +38,13 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> 
     //holder.itemView是子项视图的实例，holder.textView是子项内控件的实例
     //position是点击位置
     @Override
-    public void onBindViewHolder(MyViewHolder holder, final int position) {
+    public void onBindViewHolder(PlanItemViewHolder holder, final int position) {
         //设置textView显示内容为list里的对应项
-        holder.textView.setText(list.get(position));
+        holder.textView.setText(list.get(position).getItemText());
+        if (list.get(position).getPurchaseState()) {
+            holder.purchaseBtn.setText(R.string.plan_purchase_again);
+        }
+
         //子项的点击事件监听
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,6 +53,15 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> 
             }
         });
 
+        if (mItemClickListener != null) {
+            holder.purchaseBtn.setTag(position);
+            holder.purchaseBtn.setOnClickListener(this);
+            holder.payBtn.setTag(position);
+            holder.payBtn.setOnClickListener(this);
+            holder.cancelPayBtn.setTag(position);
+            holder.cancelPayBtn.setOnClickListener(this);
+        }
+        /*
         holder.purchaseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,7 +90,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> 
                 itemView.findViewById(R.id.btn_plan_item_cancel).setVisibility(View.GONE);
                 itemView.findViewById(R.id.btn_plan_item_purchase).setVisibility(View.VISIBLE);
             }
-        });
+        });*/
     }
 
     //要显示的子项数量
@@ -83,15 +99,31 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> 
         return list.size();
     }
 
+    @Override
+    public void onClick(View v) {
+        if (v.getTag() != null) {
+            int position = (int) v.getTag();
+            mItemClickListener.onItemClick(v, position);
+        }
+    }
+
+    public void setOnItemClickListener(PlanItemClickListener listener){
+        this.mItemClickListener = listener;
+    }
+
+    public interface PlanItemClickListener {
+        void onItemClick(View view,int position);
+    }
+
     //这里定义的是子项的类，不要在这里直接对获取对象进行操作
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public class PlanItemViewHolder extends RecyclerView.ViewHolder {
 
-        TextView textView;
-        Button purchaseBtn;
-        Button payBtn;
-        Button cancelPayBtn;
+        private TextView textView;
+        private Button purchaseBtn;
+        private Button payBtn;
+        private Button cancelPayBtn;
 
-        public MyViewHolder(View itemView) {
+        public PlanItemViewHolder(View itemView) {
             super(itemView);
             textView = itemView.findViewById(R.id.plan_other_item_title_textview);
             purchaseBtn = itemView.findViewById(R.id.btn_plan_item_purchase);
@@ -103,9 +135,9 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> 
     /*之下的方法都是为了方便操作，并不是必须的*/
 
     //在指定位置插入，原位置的向后移动一格
-    public boolean addItem(int position, String msg) {
+    public boolean addItem(int position, PlanItem pi) {
         if (position < list.size() && position >= 0) {
-            list.add(position, msg);
+            list.add(position, pi);
             notifyItemInserted(position);
             return true;
         }

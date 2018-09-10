@@ -17,36 +17,19 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/holo_blue_dark"
+            android:background="#3da8dc"
             android:orientation="vertical">
 
             <ImageButton
                 android:id="@+id/img_btn_call"
-                android:layout_width="@android:dimen/thumbnail_width"
+                android:layout_width="@dimen/today_call_btn_size"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="50px"
                 android:adjustViewBounds="true"
                 android:background="@android:color/transparent"
-                android:onClick="onCallBtnClick"
-                android:src="@drawable/btn_circle" />
-
-            <TextView
-                android:id="@+id/txt_health_index"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/today_health_index"
-                android:textColor="@android:color/background_light" />
-
-            <ProgressBar
-                android:id="@+id/pgb_health_index"
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20px"
-                android:max="100"
-                android:progress="60" />
+                android:scaleType="fitXY"
+                android:src="@drawable/today_call_btn" />
         </LinearLayout>
 
         <LinearLayout
@@ -61,7 +44,7 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/btn_mesure"
+                    android:id="@+id/btn_measure"
                     android:layout_width="wrap_content"
                     android:layout_height="@android:dimen/notification_large_icon_height"
                     android:layout_weight="1"

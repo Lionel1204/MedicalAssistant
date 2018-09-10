@@ -7,6 +7,8 @@
     <string name="title_activity_login">登录</string>
     <string name="main_repeat">操作太快，请稍后重试</string>
     <string name="permission_camera">需要授权访问相机</string>
+    <string name="opening_camera">正在打开相机</string>
+    <string name="please_wait">请稍候...</string>
 
 
     <!-- Strings related to login -->
@@ -73,6 +75,7 @@
     <string name="plan_purchase_again">续订</string>
     <string name="plan_pay">确认支付</string>
     <string name="plan_cancel_pay">取消</string>
+    <string name="plan_call_pay_platform">调用第三方支付平台</string>
 
 
     <!-- Check result page -->
