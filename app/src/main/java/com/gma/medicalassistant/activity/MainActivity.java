@@ -160,8 +160,6 @@ public class MainActivity extends AppCompatActivity implements
         mPd.setTitle(R.string.opening_camera);
         mPd.setMessage(getResources().getString(R.string.please_wait));
         mPd.setCanceledOnTouchOutside(false);
-
-
     }
 
     @Override
