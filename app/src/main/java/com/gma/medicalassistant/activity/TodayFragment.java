@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -149,6 +150,7 @@ public class TodayFragment extends Fragment {
                         MedConst.CALL_DOCTOR_REQUEST_CODE);
             }
         });
+
 
         mMeasureBtn.setOnClickListener(new View.OnClickListener() {
             @Override

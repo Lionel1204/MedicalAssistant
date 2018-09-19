@@ -13,4 +13,25 @@
         <item name="android:textColor">@color/txt_gray</item>
     </style>
 
+    <style name="TodayInfoTitle">
+        <item name="android:textSize">18dip</item>
+        <item name="android:textColor">@color/txt_white</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+    <style name="TodayInfoContent">
+        <item name="android:textSize">14dip</item>
+        <item name="android:textColor">@color/txt_darker_white</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+    <style name="ListItemTail">
+        <item name="android:textSize">20dip</item>
+        <item name="android:textColor">@color/txt_darker_white</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+    <style name="TodayBtnText">
+        <item name="android:textSize">18dip</item>
+        <item name="android:textColor">@color/txt_gray</item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
+
 </resources>

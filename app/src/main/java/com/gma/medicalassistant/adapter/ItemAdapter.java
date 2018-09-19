@@ -61,36 +61,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.PlanItemViewHo
             holder.cancelPayBtn.setTag(position);
             holder.cancelPayBtn.setOnClickListener(this);
         }
-        /*
-        holder.purchaseBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                View itemView = (View) view.getParent();
-                itemView.findViewById(R.id.btn_plan_item_pay).setVisibility(View.VISIBLE);
-                itemView.findViewById(R.id.btn_plan_item_cancel).setVisibility(View.VISIBLE);
-                itemView.findViewById(R.id.btn_plan_item_purchase).setVisibility(View.GONE);
-            }
-        });
-
-        holder.payBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                View itemView = (View) view.getParent();
-                itemView.findViewById(R.id.btn_plan_item_pay).setVisibility(View.GONE);
-                itemView.findViewById(R.id.btn_plan_item_cancel).setVisibility(View.GONE);
-                itemView.findViewById(R.id.btn_plan_item_purchase).setVisibility(View.VISIBLE);
-            }
-        });
-
-        holder.cancelPayBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                View itemView = (View) view.getParent();
-                itemView.findViewById(R.id.btn_plan_item_pay).setVisibility(View.GONE);
-                itemView.findViewById(R.id.btn_plan_item_cancel).setVisibility(View.GONE);
-                itemView.findViewById(R.id.btn_plan_item_purchase).setVisibility(View.VISIBLE);
-            }
-        });*/
     }
 
     //要显示的子项数量

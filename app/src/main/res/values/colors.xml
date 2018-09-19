@@ -8,4 +8,7 @@
     <color name="bg_lightblue">#6da7ff</color>
     <color name="txt_gray">#0C0C0C</color>
     <color name="bg_today_green">#5faa50</color>
+    <color name="txt_white">#fcfcfc</color>
+    <color name="txt_darker_white">#CCCCCC</color>
+    <color name="bt_today_info_green">#6fba60</color>
 </resources>

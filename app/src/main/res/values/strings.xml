@@ -32,6 +32,9 @@
     <string name="today_plan">心脏计划</string>
     <string name="today_result">检查结果</string>
     <string name="today_heart_rate">心率/心电</string>
+    <string name="today_blood_pressure_high">血压/高</string>
+    <string name="today_blood_pressure_low">血压/低</string>
+    <string name="today_heart_rate_show">心率</string>
 
     <!-- Signup Page -->
     <string name="signup_success">签到成功</string>
