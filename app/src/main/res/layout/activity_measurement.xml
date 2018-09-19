@@ -38,6 +38,8 @@
             android:id="@+id/btn_measurement_send_doctor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/measurement_send_to_doctor" />
+            android:background="@drawable/btn_selector"
+            android:text="@string/measurement_send_to_doctor"
+            android:textColor="@color/txt_white" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

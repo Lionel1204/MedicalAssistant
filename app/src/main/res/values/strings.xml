@@ -63,7 +63,7 @@
     <string name="measurement_title">一键测量</string>
     <string name="measurement_heart_rate">心率：75</string>
     <string name="measurement_blood_pressure">血压：120/80 mmHg</string>
-    <string name="measurement_send_to_doctor">发送给医生</string>
+    <string name="measurement_send_to_doctor">发送报告</string>
 
     <!-- Plan page -->
     <string name="plan_title">心脏计划</string>
