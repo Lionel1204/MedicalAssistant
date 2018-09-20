@@ -135,7 +135,7 @@
                     android:layout_height="@android:dimen/app_icon_size"
                     android:layout_gravity="center_vertical|center_horizontal"
                     android:layout_margin="5dp"
-                    android:src="@mipmap/ic_launcher" />
+                    android:src="@drawable/today_measure" />
 
                 <Button
                     android:id="@+id/btn_measure"
@@ -148,14 +148,13 @@
                     android:gravity="center"
                     android:text="@string/today_measure" />
 
-                <TextView
-                    android:id="@+id/txtview_measure_tail"
-                    style="@style/ListItemTail"
+                <ImageView
+                    android:id="@+id/imgview_measure_tail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:padding="10dp"
-                    android:text=">" />
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/item_tail" />
 
             </LinearLayout>
 
@@ -171,7 +170,7 @@
                     android:layout_width="@android:dimen/app_icon_size"
                     android:layout_height="@android:dimen/app_icon_size"
                     android:layout_margin="5dp"
-                    android:src="@mipmap/ic_launcher" />
+                    android:src="@drawable/today_heart_plan" />
 
                 <Button
                     android:id="@+id/btn_today_plan"
@@ -211,14 +210,13 @@
                         android:text="套餐剩余：15天" />
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/txtview_heart_plan_tail"
-                    style="@style/ListItemTail"
+                <ImageView
+                    android:id="@+id/imgview_heart_plan_tail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:padding="10dp"
-                    android:text=">" />
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/item_tail" />
             </LinearLayout>
 
             <LinearLayout
@@ -234,7 +232,7 @@
                     android:layout_height="@android:dimen/app_icon_size"
                     android:layout_gravity="center_vertical|center_horizontal"
                     android:layout_margin="5dp"
-                    android:src="@mipmap/ic_launcher" />
+                    android:src="@drawable/today_result" />
 
                 <Button
                     android:id="@+id/btn_today_result"
@@ -254,14 +252,13 @@
                     android:gravity="center_vertical|end"
                     android:text="3条" />
 
-                <TextView
-                    android:id="@+id/txtview_result_tail"
-                    style="@style/ListItemTail"
+                <ImageView
+                    android:id="@+id/imgview_result_tail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:padding="10dp"
-                    android:text=">" />
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/item_tail" />
             </LinearLayout>
 
             <LinearLayout
@@ -273,10 +270,10 @@
                 <ImageView
                     android:id="@+id/imgview_heart_rate_icon"
                     android:layout_width="@android:dimen/app_icon_size"
-                    android:layout_height="@android:dimen/app_icon_size"
+                    android:layout_height="51dp"
                     android:layout_gravity="center_vertical|center_horizontal"
                     android:layout_margin="5dp"
-                    android:src="@mipmap/ic_launcher" />
+                    android:src="@drawable/today_heart_rate" />
 
                 <Button
                     android:id="@+id/btn_today_heart_rate"
@@ -316,14 +313,13 @@
                         android:text="良好" />
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/txtview_heart_rate_tail"
-                    style="@style/ListItemTail"
+                <ImageView
+                    android:id="@+id/imgview_heart_rate_tail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:padding="10dp"
-                    android:text=">" />
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/item_tail" />
             </LinearLayout>
 
             <LinearLayout

@@ -40,7 +40,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.PlanItemViewHo
     @Override
     public void onBindViewHolder(PlanItemViewHolder holder, final int position) {
         //设置textView显示内容为list里的对应项
-        holder.textView.setText(list.get(position).getItemText());
+        holder.tvTitle.setText(list.get(position).getTitle());
+        holder.tvContent.setText(list.get(position).getContent());
         if (list.get(position).getPurchaseState()) {
             holder.purchaseBtn.setText(R.string.plan_purchase_again);
         }
@@ -88,14 +89,16 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.PlanItemViewHo
     //这里定义的是子项的类，不要在这里直接对获取对象进行操作
     public class PlanItemViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView textView;
+        private TextView tvTitle;
+        private TextView tvContent;
         private Button purchaseBtn;
         private Button payBtn;
         private Button cancelPayBtn;
 
         public PlanItemViewHolder(View itemView) {
             super(itemView);
-            textView = itemView.findViewById(R.id.plan_other_item_title_textview);
+            tvTitle = itemView.findViewById(R.id.plan_other_item_title_textview);
+            tvContent = itemView.findViewById(R.id.plan_other_item_details_textview);
             purchaseBtn = itemView.findViewById(R.id.btn_plan_item_purchase);
             payBtn = itemView.findViewById(R.id.btn_plan_item_pay);
             cancelPayBtn = itemView.findViewById(R.id.btn_plan_item_cancel);

@@ -8,85 +8,38 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
-        <TextView
-            android:id="@+id/plan_title_textview"
-            style="@style/ShowInfoStyle"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10px"
-            android:background="@color/bg_lightgray"
-            android:text="@string/plan_details_title" />
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/plan_content_textview"
-            style="@style/ShowInfoStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25px"
-            android:text="@string/plan_details_content" />
+            <ImageView
+                android:id="@+id/imgview_heart_plan_main"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/heart_plan_img_size"
+                android:scaleType="fitStart"
+                app:srcCompat="@drawable/heart_plan_main" />
+        </FrameLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/plan_finished_textview"
-                style="@style/ShowInfoStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25px"
-                android:layout_weight="1"
-                android:text="@string/plan_finished" />
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/plan_other_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
 
-            <ImageView
-                android:id="@+id/plan_finished_imgview"
-                android:layout_width="60px"
-                android:layout_height="60px"
-                android:layout_gravity="right"
-                android:layout_marginRight="80px"
-                app:srcCompat="@android:drawable/ic_notification_overlay" />
+            </android.support.v7.widget.RecyclerView>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/plan_remained_textview"
-                style="@style/ShowInfoStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25px"
-                android:layout_weight="1"
-                android:text="@string/plan_remained" />
-
-            <ImageView
-                android:id="@+id/plan_remained_imgview"
-                android:layout_width="60px"
-                android:layout_height="60px"
-                android:layout_gravity="right"
-                android:layout_marginRight="80px"
-                app:srcCompat="@android:drawable/ic_notification_overlay" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/plan_other_title"
-            style="@style/ShowInfoStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="60px"
-            android:background="@color/bg_lightgray"
-            android:text="@string/plan_other_title" />
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/plan_other_recyclerview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

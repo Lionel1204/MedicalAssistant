@@ -42,7 +42,8 @@
     <!-- Care Activity Page -->
     <string name="careact_signup">点击报名</string>
     <string name="careact_showinfo"> \n
-                                    时间：2018.8.23 - 8.30  15:00 - 17:00 \n
+                                    时间：2018.8.23 - 8.30 \n
+                                         15:00 - 17:00 \n
                                     地点：中心会议厅 \n
                                     内容：中医五禽戏对心脏的康复锻炼（讲解+锻炼）\n
                                     主讲：广州中医药大学 \n
@@ -64,6 +65,7 @@
     <string name="measurement_heart_rate">心率：75</string>
     <string name="measurement_blood_pressure">血压：120/80 mmHg</string>
     <string name="measurement_send_to_doctor">发送报告</string>
+    <string name="measurement_measure">一键测量</string>
 
     <!-- Plan page -->
     <string name="plan_title">心脏计划</string>
@@ -72,7 +74,11 @@
     <string name="plan_finished">已完成：60%</string>
     <string name="plan_remained">套餐剩余：15天</string>
     <string name="plan_other_title">其他计划</string>
-    <string name="plan_type_1">心脏养护关爱%d号套餐</string>
+    <string name="plan_type_1">心脏养护关爱套餐%d号</string>
+    <string name="plan_content">
+        套餐介绍：关爱您的心脏，祝您早日康复！\n
+        套餐为期%d天，价格%d元
+    </string>
     <string name="plan_type_2">心脏加油%d号套餐</string>
     <string name="plan_purchase">订购</string>
     <string name="plan_purchase_again">续订</string>

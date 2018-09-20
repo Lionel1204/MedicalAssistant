@@ -13,6 +13,18 @@
         <item name="android:textColor">@color/txt_gray</item>
     </style>
 
+    <style name="HeartPlanTitle">
+        <item name="android:textSize">18dip</item>
+        <item name="android:textColor">@color/txt_gray</item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
+
+    <style name="HeartPlanContent">
+        <item name="android:textSize">14dip</item>
+        <item name="android:textColor">@color/txt_darker_white</item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
+
     <style name="TodayInfoTitle">
         <item name="android:textSize">18dip</item>
         <item name="android:textColor">@color/txt_white</item>

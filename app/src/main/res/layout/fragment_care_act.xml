@@ -18,13 +18,17 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:maxLines="999"
+            android:padding="10dp"
             android:text="@string/careact_showinfo" />
 
         <Button
             android:id="@+id/btn_care_sign"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/careact_signup" />
+            android:layout_margin="20dp"
+            android:background="@drawable/btn_selector"
+            android:text="@string/careact_signup"
+            android:textColor="@color/txt_white" />
     </LinearLayout>
 
 </FrameLayout>

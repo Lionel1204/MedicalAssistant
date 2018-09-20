@@ -2,6 +2,7 @@ package com.gma.medicalassistant.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -32,23 +33,23 @@ public class PlanActivity extends AppCompatActivity implements ItemAdapter.PlanI
 
         RecyclerView recyclerView = findViewById(R.id.plan_other_recyclerview);//获取对象
         recyclerView.setLayoutManager(new LinearLayoutManager(this));//设置布局管理器，这里选择用竖直的列表
-        List<PlanItem> list = new ArrayList<PlanItem>();
+        List<PlanItem> list = new ArrayList<>();
 
         String plan1 = getResources().getString(R.string.plan_type_1);
-        for (int i = 0; i < 1; i++) {
-            PlanItem pi = new PlanItem(String.format(plan1, i), true);
-            list.add(pi);
-        }
+        String planContent = getString(R.string.plan_content);
+        int[] expireDate = {120, 120, 15};
+        int[] price = {4800, 12800, 1200};
 
-        String plan2 = getResources().getString(R.string.plan_type_2);
-        for (int i = 0; i < 2; i++) {
-            PlanItem pi = new PlanItem(String.format(plan2, i), false);
+        for (int i = 0; i < 3; i++) {
+            String content = String.format(planContent, expireDate[i], price[i]);
+            PlanItem pi = new PlanItem(String.format(plan1, i+1), content, true);
             list.add(pi);
         }
 
         ItemAdapter itemAdapter = new ItemAdapter(list, this);//添加适配器，这里适配器刚刚装入了数据
         itemAdapter.setOnItemClickListener(this);
         recyclerView.setAdapter(itemAdapter);
+        recyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
     }
 
     @Override

@@ -53,15 +53,21 @@
                 android:id="@+id/btn_mine_modify_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:text="@string/mine_modify_info" />
+                android:background="@drawable/btn_selector"
+                android:text="@string/mine_modify_info"
+                android:textColor="@color/txt_white" />
 
             <Button
                 android:id="@+id/btn_mine_add_wechat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:text="@string/mine_add_wechat" />
+                android:background="@drawable/btn_selector"
+                android:text="@string/mine_add_wechat"
+                android:textColor="@color/txt_white" />
         </LinearLayout>
     </LinearLayout>
 
