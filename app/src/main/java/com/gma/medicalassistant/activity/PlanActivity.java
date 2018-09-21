@@ -42,7 +42,7 @@ public class PlanActivity extends AppCompatActivity implements ItemAdapter.PlanI
 
         for (int i = 0; i < 3; i++) {
             String content = String.format(planContent, expireDate[i], price[i]);
-            PlanItem pi = new PlanItem(String.format(plan1, i+1), content, true);
+            PlanItem pi = new PlanItem(String.format(plan1, i+1), content, i == 0);
             list.add(pi);
         }
 

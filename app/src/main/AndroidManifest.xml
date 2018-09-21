@@ -21,7 +21,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activity.MainActivity"
-            android:label="@string/app_name">
+            android:label="@string/action_bar_main"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,7 +33,7 @@
             android:name=".activity.LoginActivity"
             android:label="@string/title_activity_login">
             <intent-filter>
-                <action android:name="ACTION_LOGIN" />
+                <action android:name="ACTION_PT_LOGIN" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

@@ -4,7 +4,7 @@ public class MedConst {
     // Const number
     public static final int MIN_INTERVAL_SWITCH_NAVIGATION = 3 * 1000; //second
     // Intent
-    public static final String INTENT_ACTION_LOGIN = "ACTION_LOGIN";
+    public static final String INTENT_ACTION_LOGIN = "ACTION_PT_LOGIN";
     public static final String INTENT_ACTION_CALL_DOCTOR = "ACTION_CALL_DOCTOR";
     public static final String INTENT_ACTION_MEASUREMENT = "ACTION_MEASUREMENT";
     public static final String INTENT_ACTION_PLAN = "ACTION_PLAN";
