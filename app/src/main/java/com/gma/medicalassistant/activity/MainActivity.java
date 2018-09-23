@@ -138,6 +138,11 @@ public class MainActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if (null != savedInstanceState) {
+            savedInstanceState.getBoolean(MedConst.IS_LOGGED_KEY, false);
+            Log.i(TAG, "Set logged flag " + mLogged + " from savedInstanceState");
+        }
+
         mTextMessage = findViewById(R.id.message);
         navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -176,6 +181,24 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        if (null != outState) {
+            outState.putBoolean(MedConst.IS_LOGGED_KEY, mLogged);
+            Log.i(TAG, "Set logged flag " + mLogged + " to savedInstanceState");
+        }
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        if (null != savedInstanceState) {
+            mLogged = savedInstanceState.getBoolean(MedConst.IS_LOGGED_KEY);
+            Log.i(TAG, "restore logged flag " + mLogged + " from saveInstanceState");
+        }
+        super.onRestoreInstanceState(savedInstanceState);
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
@@ -184,6 +207,8 @@ public class MainActivity extends AppCompatActivity implements
                     String result = data.getExtras().getString("result");
                     mLogged = result.equals("OK");
                     Log.i(TAG, result);
+                } else if (resultCode == RESULT_CANCELED) {
+                    finish();
                 }
                 break;
             case MedConst.CALL_DOCTOR_REQUEST_CODE:
